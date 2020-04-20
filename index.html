@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/sheet.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="input_container">
+            <div class="">
+                <div class="input_text">
+                    <label for="english_name_inpt" class="id">Angielskie słowo</label>
+                    <input type="text" id="english_name_inpt" class="input-style">
+                </div>
+
+                <div class="input_text">
+                    <label for="english_phonetics" class="id">Zapis fonetyczny</label>
+                    <input type="text" id="english_phonetics" class="input-style">
+                </div>
+
+                <div class="input_text">
+                    <label for="sound" class="id">Wymowa (wygeneruj w anki)</label>
+                    <input type="text" id="sound" class="input-style">
+                </div>
+
+                <div class="input_text">
+                    <label for="mnemonic" class="id">Mnemonic</label>
+                    <input type="text" id="mnemonic" class="input-style">
+                </div>
+            </div>
+
+            <div class="">
+                <div class="input_text">
+                    <label for="polish_name_1_inpt" class="id">Polskie słowo #1</label>
+                    <input type="text" id="polish_name_1_inpt" class="input-style">
+                </div>
+
+                <div class="input_text">
+                    <label for="polish_name_2_inpt" class="id">Polskie słowo #2</label>
+                    <input type="text" id="polish_name_2_inpt" class="input-style">
+                </div>
+                
+                <div class="input_text">
+                    <label for="polish_name_3_inpt" class="id">Polskie słowo #3</label>
+                    <input type="text" id="polish_name_3_inpt" class="input-style">
+                </div>
+
+                <div class="input_text">
+                    <label for="polish_name_4_inpt" class="id">Polskie słowo #4</label>
+                    <input type="text" id="polish_name_4_inpt" class="input-style">
+                </div>
+            </div>
+
+            <div class="">
+                <div class="input_text">
+                    <label for="example_sentence" class="id">Przykład: Zdanie ANG</label>
+                    <input type="text" id="example_sentence" class="input-style">
+                </div>
+
+                <div class="input_text">
+                    <label for="example_phonetics" class="id">Przykład: Zapis fonet.</label>
+                    <input type="text" id="example_phonetics" class="input-style">
+                </div>
+
+                <div class="input_text">
+                    <label for="example_polish" class="id">Przykład: Zdanie PL</label>
+                    <input type="text" id="example_polish" class="input-style">
+                </div>
+            </div>
+
+            <input type="button" value="Dodaj do kolejki" id="generate-btn" class="btn">
+            
+            <input type="button" value="Clear" id="reset_btn" class="btn">
+
+            <input type="button" value="Popraw ostatnio dodaną pozycje" id="edit-btn" class="btn">
+
+            <input type="button" value="Pobierz" id="download_btn" class="btn">
+            
+            <input type="button" value="Ilość pakietów gotowych do pobrania: 0" id="info_btn" class="btn">
+            
+            <input type="button" value="Usuń wszystkie dodane" id="permanent_delete_btn" class="btn">
+            <p class="warning-info">*Uzupełnij rubryki</p>
+        </div>
+
+        <div class="keys">
+            <div class="box">
+                <p class="short">alt + 1</p>
+                <p class="info">Fokus na Angielskie słowo</p>
+            </div>
+            <div class="box">
+                <p class="short">alt + 2</p>
+                <p class="info">Fokus na Polskie słowo 1</p>
+            </div>
+            <div class="box">
+                <p class="short">alt + 1</p>
+                <p class="info">Fokus na Przykład: Zadanie ANG</p>
+            </div>
+            <div class="box">
+                <p class="short">alt + q</p>
+                <p class="info">Dodaje pozycje</p>
+            </div>
+            <div class="box">
+                <p class="short">alt + s</p>
+                <p class="info">Clear</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/5ed507ef8aa53d8ecfea96d96bc7214cd2476fd2/FileSaver.min.js"></script>
+
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
