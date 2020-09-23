@@ -1,8 +1,8 @@
 GB = {
     newbie_code: [],
-    newbie_name: "newbie.txt", 
-    hard_code: [],
-    hard_name: "hard.txt"
+    newbie_name: "Anki_Słówka.txt", 
+    // hard_code: [],
+    // hard_name: "hard.txt"
 }
 
 $(document).ready(function () {
@@ -15,73 +15,7 @@ $(document).ready(function () {
     reset_btn();
 })
 
-
-
-
-// function copy_btn() {
-
-//     // Copy Ang - Pol
-//     var copyTextToClipboard = function () {
-//         var input = document.querySelector('#ang-pol');
-//         input.select();
-//         document.execCommand("copy");
-//         $('#ang-pol').css("background", "green");
-//     }
-//     var copy = document.querySelector('.ap')
-//     copy.addEventListener('click', copyTextToClipboard);
-
-//     // Copy Pol - Ang
-//     var copyTextToClipboard = function () {
-//         var input = document.querySelector('#pol-ang');
-//         input.select();
-//         document.execCommand("copy");
-//         $('#pol-ang').css("background", "green");
-//     }
-//     var copy = document.querySelector('.pa')
-//     copy.addEventListener('click', copyTextToClipboard);
-
-//     // Copy Fon - Ang
-//     var copyTextToClipboard = function () {
-//         var input = document.querySelector('#pho-ang');
-//         input.select();
-//         document.execCommand("copy");
-//         $('#pho-ang').css("background", "green");
-//     }
-//     var copy = document.querySelector('.pha')
-//     copy.addEventListener('click', copyTextToClipboard);
-
-//     // Copy Wym - Pol
-//     var copyTextToClipboard = function () {
-//         var input = document.querySelector('#pron-ang');
-//         input.select();
-//         document.execCommand("copy");
-//         $('#pron-ang').css("background", "green");
-//     }
-//     var copy = document.querySelector('.proa')
-//     copy.addEventListener('click', copyTextToClipboard);
-
-//     // Copy Pol - Wym
-//     var copyTextToClipboard = function () {
-//         var input = document.querySelector('#pol-pron');
-//         input.select();
-//         document.execCommand("copy");
-//         $('#pol-pron').css("background", "green");
-//     }
-//     var copy = document.querySelector('.ppron')
-//     copy.addEventListener('click', copyTextToClipboard);
-
-//     // Copy Dodatek
-//     var copyTextToClipboard = function (e) {
-//         var input = document.querySelector('#dodatek');
-//         input.select();
-//         document.execCommand("copy");
-//         $('#dodatek').css("background", "green");
-//     }
-//     var copy = document.querySelector('.exp')
-//     copy.addEventListener('click', copyTextToClipboard);
-// }
-
-
+// === btn - Dodaj do kolejki
 function generator_btn() {
     $('#generate-btn').on('click', function () {
 
@@ -105,64 +39,64 @@ function generator_btn() {
             }
         }
     })
-
 }
 
-// Nie dodałem zabezpieczenia przed dodaniem do 1# i 3# pola z pominięciem 2# - odpali się funkcja code_3
 function show() {
    
     const English_word = $('.input_text #english_name_inpt').val();
     const Phonetics = $('.input_text #english_phonetics').val();
     const Sound = $('.input_text #sound').val();
-    const Mnemonic = $('.input_text #mnemonic').val();
     const Polish_word_1 = $('.input_text #polish_name_1_inpt').val();
     const Polish_word_2 = $('.input_text #polish_name_2_inpt').val();
     const Polish_word_3 = $('.input_text #polish_name_3_inpt').val();
     const Polish_word_4 = $('.input_text #polish_name_4_inpt').val();
-    const Example_sentence = $('.input_text #example_sentence').val();
-    const example_phonetics = $('.input_text #example_phonetics').val();
-    const Example_Polish = $('.input_text #example_polish').val();
+    const Polish_word_5 = $('.input_text #polish_name_5_inpt').val();
+    const Polish_word_6 = $('.input_text #polish_name_6_inpt').val();
 
-    if (Polish_word_2 === '' && Polish_word_3 === '') {
 
-        let tmp_tab = code_1(Polish_word_1, English_word, Sound, Phonetics, Mnemonic, example_phonetics, Example_sentence, Example_Polish)
+    if (Polish_word_2 === '' && Polish_word_3 === '' && Polish_word_4 === '' && Polish_word_5 === '' && Polish_word_6 === '') {
+
+        let tmp_tab = code_1(Polish_word_1, English_word, Sound, Phonetics)
 
         if (GB.newbie_code[GB.newbie_code.length - 1] !== tmp_tab) {
-
-            GB.newbie_code.push(code_1(Polish_word_1, English_word, Sound, Phonetics, Mnemonic, example_phonetics, Example_sentence, Example_Polish))
+            GB.newbie_code.push(code_1(Polish_word_1, English_word, Sound, Phonetics))
         }
-    } else if (Polish_word_2 !== '' && Polish_word_3 === '') {
-        let tmp_tab = code_2(Polish_word_1, Polish_word_2, English_word, Sound, Phonetics, Mnemonic, example_phonetics, Example_sentence, Example_Polish)
+
+    } else if (Polish_word_2 !== '' && Polish_word_3 === '' && Polish_word_4 === '' && Polish_word_5 === '' && Polish_word_6 === '') {
+        let tmp_tab = code_2(Polish_word_1, Polish_word_2, English_word, Sound, Phonetics)
         
         if (GB.newbie_code[GB.newbie_code.length - 1] !== tmp_tab) {
-
-            GB.newbie_code.push(code_2(Polish_word_1, Polish_word_2, English_word, Sound, Phonetics, Mnemonic, example_phonetics, Example_sentence, Example_Polish));
-
-            GB.hard_code.push(code_2_profesional(Polish_word_1, Polish_word_2, English_word, Sound, Phonetics, Mnemonic, example_phonetics, Example_sentence, Example_Polish));
+            GB.newbie_code.push(code_2(Polish_word_1, Polish_word_2, English_word, Sound, Phonetics));
         }
-
         
-    } else if (Polish_word_2 !== '' && Polish_word_3 === '' && Polish_word_3 === '') {
-        let tmp_tab = code_3(Polish_word_1, Polish_word_2, Polish_word_3, English_word, Sound, Phonetics, Mnemonic, example_phonetics, Example_sentence, Example_Polish)
+    } else if (Polish_word_2 !== '' && Polish_word_3 !== '' && Polish_word_4 === '' && Polish_word_5 === '' && Polish_word_6 === '') {
+        let tmp_tab = code_3(Polish_word_1, Polish_word_2, Polish_word_3, English_word, Sound, Phonetics)
             
         if (GB.newbie_code[GB.newbie_code.length - 1] !== tmp_tab) {
-
-            GB.newbie_code.push(code_3(Polish_word_1, Polish_word_2, Polish_word_3, English_word, Sound, Phonetics, Mnemonic, example_phonetics, Example_sentence, Example_Polish))
-
-            GB.hard_code.push(code_3_profesional(Polish_word_1, Polish_word_2, Polish_word_3, English_word, Sound, Phonetics, Mnemonic, example_phonetics, Example_sentence, Example_Polish));
+            GB.newbie_code.push(code_3(Polish_word_1, Polish_word_2, Polish_word_3, English_word, Sound, Phonetics))
         }
+
+    } else if (Polish_word_2 !== '' && Polish_word_3 !== '' && Polish_word_4 !== '' && Polish_word_5 === '' && Polish_word_6 === '') {
+        let tmp_tab = code_4(Polish_word_1, Polish_word_2, Polish_word_3, Polish_word_4, English_word, Sound, Phonetics)
+            
+        if (GB.newbie_code[GB.newbie_code.length - 1] !== tmp_tab) {
+            GB.newbie_code.push(code_4(Polish_word_1, Polish_word_2, Polish_word_3, Polish_word_4, English_word, Sound, Phonetics))
+        }
+
+    } else if (Polish_word_2 !== '' && Polish_word_3 !== '' && Polish_word_4 !== '' && Polish_word_5 !== '' && Polish_word_6 === '' ) {
+        let tmp_tab = code_5(Polish_word_1, Polish_word_2, Polish_word_3, Polish_word_4, Polish_word_5, English_word, Sound, Phonetics)
+            
+        if (GB.newbie_code[GB.newbie_code.length - 1] !== tmp_tab) {
+            GB.newbie_code.push(code_5(Polish_word_1, Polish_word_2, Polish_word_3, Polish_word_4, Polish_word_5, English_word, Sound, Phonetics))
+        }
+
     } else {
-        let tmp_tab = code_4(Polish_word_1, Polish_word_2, Polish_word_3, Polish_word_4, English_word, Sound, Phonetics, Mnemonic, example_phonetics, Example_sentence, Example_Polish)
+        let tmp_tab = code_6(Polish_word_1, Polish_word_2, Polish_word_3, Polish_word_4, Polish_word_5, Polish_word_6, English_word, Sound, Phonetics)
             
         if (GB.newbie_code[GB.newbie_code.length - 1] !== tmp_tab) {
-
-            GB.newbie_code.push(code_4(Polish_word_1, Polish_word_2, Polish_word_3, Polish_word_4, English_word, Sound, Phonetics, Mnemonic, example_phonetics, Example_sentence, Example_Polish))
-
-            GB.hard_code.push(code_4_profesional(Polish_word_1, Polish_word_2, Polish_word_3, Polish_word_4, English_word, Sound, Phonetics, Mnemonic, example_phonetics, Example_sentence, Example_Polish));
+            GB.newbie_code.push(code_6(Polish_word_1, Polish_word_2, Polish_word_3, Polish_word_4, Polish_word_5, Polish_word_6, English_word, Sound, Phonetics))
         }
     }
-
-    console.log('GB.newbie_code: ', GB.newbie_code);
 
     $('#info_btn').val("Ilość pakietów gotowych do pobrania: " + GB.newbie_code.length);
 }
@@ -170,14 +104,12 @@ function show() {
 function download_btn() {
     $("#download_btn").on("click", function () {
         download_file(GB.newbie_code, GB.newbie_name);
-        download_file(GB.hard_code, GB.hard_name);
     })
 }
 
 function edit_btn() {
     $("#edit-btn").on("click", function () {
         GB.newbie_code.pop();
-        GB.hard_code.pop();
         $('#info_btn').val("Ilość pakietów gotowych do pobrania: " + GB.newbie_code.length);
     })
 }
@@ -185,7 +117,6 @@ function edit_btn() {
 function reset_table() {
     $('#permanent_delete_btn').on("click", function () {
         GB.newbie_code = [];
-        GB.hard_code = [];
         $('#info_btn').val("Ilość pakietów gotowych do pobrania: " + GB.newbie_code.length);
         reset();
     })
@@ -206,73 +137,44 @@ function download_file(code, name) {
         type: "text/plain; charset=utf-8"
     });
     saveAs(blob, name);
+    GB.newbie_code = [];
 
-    if (code === GB.newbie_code) {
-        GB.newbie_code = [];
-    } else {
-        GB.hard_code = [];
-    }
     $('#info_btn').val("Ilość pakietów gotowych do pobrania: " + GB.newbie_code.length);
 }
 
-function code_1(PL_1, EN, Sound, Pho, Mnemo, Exp_pho, Exp_sent, Exp_PL) {
-    return `{{c1::${EN}}}<br><br>{{c2::${PL_1}}}	${PL_1}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-    sound: ${Sound}<br><br>{{c1::${PL_1}}}	${PL_1}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-    ${PL_1}<br><br>sound: {{c1::${Sound}<br>${Pho}}}	${PL_1}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
+function code_1(PL_1, EN, Sound, Pho) {
+    return `{{c1::${EN}}}<br><br>{{c2::${PL_1}}}	${PL_1}	${EN}	${Pho}	${Sound}
+    sound: ${Sound}<br><br>{{c1::${PL_1}}}	${PL_1}	${EN}	${Pho}	${Sound}
 `
 }
 
-function code_2(PL_1, PL_2, EN, Sound, Pho, Mnemo, Exp_pho, Exp_sent, Exp_PL) {
-    return `{{c1::${EN}}}<br><br>{{c2::${PL_1}}}&sbquo; {{c3::${PL_2}}}	${PL_1}&sbquo; ${PL_2}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-    sound: ${Sound}<br><br>{{c1::${PL_1}}}&sbquo; {{c2::${PL_2}}}	${PL_1}&sbquo; ${PL_2}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-    ${PL_1}&sbquo; ${PL_2}<br><br>sound: {{c1::${Sound}<br>${Pho}}}	${PL_1}&sbquo; ${PL_2}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-    {{c1::${EN}}}<br><br>{{c2::${PL_2}}}&sbquo; {{c3::${PL_1}}}	${PL_1}&sbquo; ${PL_2}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
+function code_2(PL_1, PL_2, EN, Sound, Pho) {
+    return `{{c1::${EN}}}<br><br>{{c2::${PL_1}}}&sbquo; {{c2::${PL_2}}}	${PL_1}&sbquo; ${PL_2}	${EN}	${Pho}	${Sound}
+    sound: ${Sound}<br><br>{{c1::${PL_1}}}&sbquo; {{c1::${PL_2}}}	${PL_1}&sbquo; ${PL_2}	${EN}	${Pho}	${Sound}
 `
 }
 
-function code_3(PL_1, PL_2, PL_3, EN, Sound, Pho, Mnemo, Exp_pho, Exp_sent, Exp_PL) {
-    return `{{c1::${EN}}}<br><br>{{c2::${PL_1}}}&sbquo; {{c3::${PL_2}}}&sbquo; {{c4::${PL_3}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-    sound: ${Sound}<br><br>{{c1::${PL_1}}}&sbquo; {{c2::${PL_2}}}&sbquo; {{c3::${PL_3}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-    ${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}<br><br>sound: {{c1::${Sound}<br>${Pho}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-    {{c1::${EN}}}<br><br>{{c2::${PL_1}}}&sbquo; {{c3::${PL_3}}}&sbquo; {{c4::${PL_2}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-    {{c1::${EN}}}<br><br>{{c2::${PL_2}}}&sbquo; {{c3::${PL_1}}}&sbquo; {{c4::${PL_3}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-    {{c1::${EN}}}<br><br>{{c2::${PL_2}}}&sbquo; {{c3::${PL_3}}}&sbquo; {{c4::${PL_1}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-    {{c1::${EN}}}<br><br>{{c2::${PL_3}}}&sbquo; {{c3::${PL_1}}}&sbquo; {{c4::${PL_2}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-    {{c1::${EN}}}<br><br>{{c2::${PL_3}}}&sbquo; {{c3::${PL_2}}}&sbquo; {{c4::${PL_1}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
+function code_3(PL_1, PL_2, PL_3, EN, Sound, Pho) {
+    return `{{c1::${EN}}}<br><br>{{c2::${PL_1}}}&sbquo; {{c2::${PL_2}}}&sbquo; {{c2::${PL_3}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}	${EN}	${Pho}	${Sound}
+    sound: ${Sound}<br><br>{{c1::${PL_1}}}&sbquo; {{c1::${PL_2}}}&sbquo; {{c1::${PL_3}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}	${EN}	${Pho}	${Sound}
 `
 }
 
-function code_4(PL_1, PL_2, PL_3, PL_4, EN, Sound, Pho, Mnemo, Exp_pho, Exp_sent, Exp_PL) {
-    return `{{c1::${EN}}}<br><br>{{c2::${PL_1}}}&sbquo; {{c3::${PL_2}}}&sbquo; {{c4::${PL_3}}}&sbquo; {{c5::${PL_4}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-    sound: ${Sound}<br><br>{{c1::${PL_1}}}&sbquo; {{c2::${PL_2}}}&sbquo; {{c3::${PL_3}}}&sbquo; {{c4::${PL_4}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-    ${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}<br><br>sound: {{c1::${Sound}<br>${Pho}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-    {{c1::${EN}}}<br><br>{{c2::${PL_4}}}&sbquo; {{c3::${PL_3}}}&sbquo; {{c4::${PL_2}}}&sbquo; {{c5::${PL_1}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-    {{c1::${EN}}}<br><br>{{c2::${PL_3}}}&sbquo; {{c3::${PL_1}}}&sbquo; {{c4::${PL_4}}}&sbquo; {{c5::${PL_2}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-    {{c1::${EN}}}<br><br>{{c2::${PL_2}}}&sbquo; {{c3::${PL_4}}}&sbquo; {{c4::${PL_1}}}&sbquo; {{c5::${PL_3}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
+function code_4(PL_1, PL_2, PL_3, PL_4, EN, Sound, Pho) {
+    return `{{c1::${EN}}}<br><br>{{c2::${PL_1}}}&sbquo; {{c2::${PL_2}}}&sbquo; {{c2::${PL_3}}}&sbquo; {{c2::${PL_4}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}	${EN}	${Pho}	${Sound}
+    sound: ${Sound}<br><br>{{c1::${PL_1}}}&sbquo; {{c1::${PL_2}}}&sbquo; {{c1::${PL_3}}}&sbquo; {{c1::${PL_4}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}	${EN}	${Pho}	${Sound}
 `
 }
 
-function code_2_profesional(PL_1, PL_2, EN, Sound, Pho, Mnemo, Exp_pho, Exp_sent, Exp_PL) {
-    return `{{c1::${EN}}}<br><br>{{c2::${PL_1}}}&sbquo; {{c2::${PL_2}}}	${PL_1}&sbquo; ${PL_2}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-    {{c1::${EN}}}<br><br>{{c1::${PL_1}}}&sbquo; {{c2::${PL_2}}}	${PL_1}&sbquo; ${PL_2}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-    {{c1::${EN}}}<br><br>{{c2::${PL_1}}}&sbquo; {{c1::${PL_2}}}	${PL_1}&sbquo; ${PL_2}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-    ${EN}<br><br>{{c1::${PL_1}}}&sbquo; {{c1::${PL_2}}}	${PL_1}&sbquo; ${PL_2}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
+function code_5(PL_1, PL_2, PL_3, PL_4, PL_5, EN, Sound, Pho) {
+    return `{{c1::${EN}}}<br><br>{{c2::${PL_1}}}&sbquo; {{c2::${PL_2}}}&sbquo; {{c2::${PL_3}}}&sbquo; {{c2::${PL_4}}}&sbquo; {{c2::${PL_5}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}&sbquo; ${PL_5}	${EN}	${Pho}	${Sound}
+    sound: ${Sound}<br><br>{{c1::${PL_1}}}&sbquo; {{c1::${PL_2}}}&sbquo; {{c1::${PL_3}}}&sbquo; {{c1::${PL_4}}}&sbquo; {{c1::${PL_5}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}&sbquo; ${PL_5}	${EN}	${Pho}	${Sound}
 `
 }
 
-function code_3_profesional(PL_1, PL_2, PL_3, EN, Sound, Pho, Mnemo, Exp_pho, Exp_sent, Exp_PL) {
-    return `{{c1::${EN}}}<br><br>{{c2::${PL_1}}}&sbquo; {{c2::${PL_2}}}&sbquo; {{c1::${PL_3}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-    {{c1::${EN}}}<br><br>{{c1::${PL_1}}}&sbquo; {{c2::${PL_2}}}&sbquo; {{c2::${PL_3}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-    {{c1::${EN}}}<br><br>{{c2::${PL_1}}}&sbquo; {{c1::${PL_2}}}&sbquo; {{c2::${PL_3}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-    ${EN}<br><br>{{c1::${PL_1}}}&sbquo; {{c1::${PL_2}}}&sbquo; {{c1::${PL_3}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-`
-}
-
-function code_4_profesional(PL_1, PL_2, PL_3, PL_4, EN, Sound, Pho, Mnemo, Exp_pho, Exp_sent, Exp_PL) {
-    return `{{c1::${EN}}}<br><br>{{c2::${PL_1}}}&sbquo; {{c2::${PL_2}}}&sbquo; {{c1::${PL_3}}}&sbquo; {{c1::${PL_4}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-    {{c1::${EN}}}<br><br>{{c1::${PL_1}}}&sbquo; {{c2::${PL_2}}}&sbquo; {{c2::${PL_3}}}&sbquo; {{c2::${PL_4}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_3}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-    {{c1::${EN}}}<br><br>{{c2::${PL_1}}}&sbquo; {{c1::${PL_2}}}&sbquo; {{c2::${PL_3}}}&sbquo; {{c2::${PL_3}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_3}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
-    ${EN}<br><br>{{c1::${PL_1}}}&sbquo; {{c1::${PL_2}}}&sbquo; {{c1::${PL_3}}}&sbquo; {{c1::${PL_3}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_3}	${EN}	${Pho}	${Sound}	${Mnemo}	${Exp_sent}	${Exp_pho}	${Exp_PL}
+function code_6(PL_1, PL_2, PL_3, PL_4, PL_5, PL_6, EN, Sound, Pho) {
+    return `{{c1::${EN}}}<br><br>{{c2::${PL_1}}}&sbquo; {{c2::${PL_2}}}&sbquo; {{c2::${PL_3}}}&sbquo; {{c2::${PL_4}}}&sbquo; {{c2::${PL_5}}}&sbquo; {{c2::${PL_6}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}&sbquo; ${PL_5}&sbquo; ${PL_6}	${EN}	${Pho}	${Sound}
+    sound: ${Sound}<br><br>{{c1::${PL_1}}}&sbquo; {{c1::${PL_2}}}&sbquo; {{c1::${PL_3}}}&sbquo; {{c1::${PL_4}}}&sbquo; {{c1::${PL_5}}}&sbquo; {{c1::${PL_6}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}&sbquo; ${PL_5}&sbquo; ${PL_6}	${EN}	${Pho}	${Sound}
 `
 }
 
@@ -281,12 +183,10 @@ function reset() {
         $('.input_text #polish_name_2_inpt').val("");
         $('.input_text #polish_name_3_inpt').val("");
         $('.input_text #polish_name_4_inpt').val("");
+        $('.input_text #polish_name_5_inpt').val("");
+        $('.input_text #polish_name_6_inpt').val("");
         $('.input_text #english_name_inpt').val("");
         $('.input_text #english_phonetics').val("");
-        $('.input_text #example_phonetics').val("");
-        $('.input_text #example_sentence').val("");
-        $('.input_text #example_polish').val("");
-        $('.input_text #mnemonic').val("");
         $('.input_text #sound').val("");
 
         $('.input-style').removeClass('input-warning');
