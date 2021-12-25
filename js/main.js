@@ -1,8 +1,8 @@
 GB = {
     newbie_code: [],
-    newbie_name: "Anki_Słówka.txt", 
-    // hard_code: [],
-    // hard_name: "hard.txt"
+    newbie_code_pl: [],
+    newbie_name_en: "Anki_Słówka_EN_PL.txt", 
+    newbie_name_pl: "Anki_Słówka_PL_EN.txt",
 }
 
 $(document).ready(function () {
@@ -60,6 +60,7 @@ function show() {
 
         if (GB.newbie_code[GB.newbie_code.length - 1] !== tmp_tab) {
             GB.newbie_code.push(code_1(Polish_word_1, English_word, Sound, Phonetics))
+            GB.newbie_code_pl.push(code_1_pl(Polish_word_1, English_word, Sound, Phonetics))
         }
 
     } else if (Polish_word_2 !== '' && Polish_word_3 === '' && Polish_word_4 === '' && Polish_word_5 === '' && Polish_word_6 === '') {
@@ -67,6 +68,7 @@ function show() {
         
         if (GB.newbie_code[GB.newbie_code.length - 1] !== tmp_tab) {
             GB.newbie_code.push(code_2(Polish_word_1, Polish_word_2, English_word, Sound, Phonetics));
+            GB.newbie_code_pl.push(code_2_pl(Polish_word_1, Polish_word_2, English_word, Sound, Phonetics));
         }
         
     } else if (Polish_word_2 !== '' && Polish_word_3 !== '' && Polish_word_4 === '' && Polish_word_5 === '' && Polish_word_6 === '') {
@@ -74,6 +76,7 @@ function show() {
             
         if (GB.newbie_code[GB.newbie_code.length - 1] !== tmp_tab) {
             GB.newbie_code.push(code_3(Polish_word_1, Polish_word_2, Polish_word_3, English_word, Sound, Phonetics))
+            GB.newbie_code_pl.push(code_3_pl(Polish_word_1, Polish_word_2, Polish_word_3, English_word, Sound, Phonetics))
         }
 
     } else if (Polish_word_2 !== '' && Polish_word_3 !== '' && Polish_word_4 !== '' && Polish_word_5 === '' && Polish_word_6 === '') {
@@ -81,6 +84,7 @@ function show() {
             
         if (GB.newbie_code[GB.newbie_code.length - 1] !== tmp_tab) {
             GB.newbie_code.push(code_4(Polish_word_1, Polish_word_2, Polish_word_3, Polish_word_4, English_word, Sound, Phonetics))
+            GB.newbie_code_pl.push(code_4_pl(Polish_word_1, Polish_word_2, Polish_word_3, Polish_word_4, English_word, Sound, Phonetics))
         }
 
     } else if (Polish_word_2 !== '' && Polish_word_3 !== '' && Polish_word_4 !== '' && Polish_word_5 !== '' && Polish_word_6 === '' ) {
@@ -88,6 +92,7 @@ function show() {
             
         if (GB.newbie_code[GB.newbie_code.length - 1] !== tmp_tab) {
             GB.newbie_code.push(code_5(Polish_word_1, Polish_word_2, Polish_word_3, Polish_word_4, Polish_word_5, English_word, Sound, Phonetics))
+            GB.newbie_code_pl.push(code_5_pl(Polish_word_1, Polish_word_2, Polish_word_3, Polish_word_4, Polish_word_5, English_word, Sound, Phonetics))
         }
 
     } else {
@@ -95,6 +100,7 @@ function show() {
             
         if (GB.newbie_code[GB.newbie_code.length - 1] !== tmp_tab) {
             GB.newbie_code.push(code_6(Polish_word_1, Polish_word_2, Polish_word_3, Polish_word_4, Polish_word_5, Polish_word_6, English_word, Sound, Phonetics))
+            GB.newbie_code_pl.push(code_6_pl(Polish_word_1, Polish_word_2, Polish_word_3, Polish_word_4, Polish_word_5, Polish_word_6, English_word, Sound, Phonetics))
         }
     }
 
@@ -103,7 +109,8 @@ function show() {
 
 function download_btn() {
     $("#download_btn").on("click", function () {
-        download_file(GB.newbie_code, GB.newbie_name);
+        download_file(GB.newbie_code, GB.newbie_name_en);
+        download_file(GB.newbie_code_pl, GB.newbie_name_pl);
     })
 }
 
@@ -117,6 +124,7 @@ function edit_btn() {
 function reset_table() {
     $('#permanent_delete_btn').on("click", function () {
         GB.newbie_code = [];
+        GB.newbie_code_pl = [];
         $('#info_btn').val("Ilość pakietów gotowych do pobrania: " + GB.newbie_code.length);
         reset();
     })
@@ -129,52 +137,78 @@ function reset_btn() {
 }
 
 function download_file(code, name) {
-    console.log('GB.newbie_code: ', GB.newbie_code);
     let tmp_tab = code.join(`
 `)
     
     var blob = new Blob([tmp_tab], {
         type: "text/plain; charset=utf-8"
     });
+
     saveAs(blob, name);
-    GB.newbie_code = [];
+
+    code = [];
 
     $('#info_btn').val("Ilość pakietów gotowych do pobrania: " + GB.newbie_code.length);
 }
 
 function code_1(PL_1, EN, Sound, Pho) {
-    return `{{c1::${EN}}}<br><br>{{c2::${PL_1}}}	${PL_1}	${EN}	${Pho}	${Sound}
-    sound: ${Sound}<br><br>{{c1::${PL_1}}}	${PL_1}	${EN}	${Pho}	${Sound}
+    return `${EN}	${PL_1}	${EN}	${Pho}	${Sound}
+    sound: ${Sound}	${PL_1}	${EN}	${Pho}	${Sound}
+`
+}
+
+function code_1_pl(PL_1, EN, Sound, Pho) {
+    return `${PL_1}	${PL_1}	${EN}	${Pho}	${Sound}
 `
 }
 
 function code_2(PL_1, PL_2, EN, Sound, Pho) {
-    return `{{c1::${EN}}}<br><br>{{c2::${PL_1}}}&sbquo; {{c2::${PL_2}}}	${PL_1}&sbquo; ${PL_2}	${EN}	${Pho}	${Sound}
-    sound: ${Sound}<br><br>{{c1::${PL_1}}}&sbquo; {{c1::${PL_2}}}	${PL_1}&sbquo; ${PL_2}	${EN}	${Pho}	${Sound}
+    return `${EN}	${PL_1}&sbquo; ${PL_2}	${EN}	${Pho}	${Sound}
+    sound: ${Sound}	${PL_1}&sbquo; ${PL_2}	${EN}	${Pho}	${Sound}
+`
+}
+function code_2_pl(PL_1, PL_2, EN, Sound, Pho) {
+    return `${PL_1}&sbquo; ${PL_2}	${PL_1}&sbquo; ${PL_2}	${EN}	${Pho}	${Sound}
 `
 }
 
 function code_3(PL_1, PL_2, PL_3, EN, Sound, Pho) {
-    return `{{c1::${EN}}}<br><br>{{c2::${PL_1}}}&sbquo; {{c2::${PL_2}}}&sbquo; {{c2::${PL_3}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}	${EN}	${Pho}	${Sound}
-    sound: ${Sound}<br><br>{{c1::${PL_1}}}&sbquo; {{c1::${PL_2}}}&sbquo; {{c1::${PL_3}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}	${EN}	${Pho}	${Sound}
+    return `${EN}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}	${EN}	${Pho}	${Sound}
+    sound: ${Sound}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}	${EN}	${Pho}	${Sound}
+`
+}
+function code_3_pl(PL_1, PL_2, PL_3, EN, Sound, Pho) {
+    return `${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}	${EN}	${Pho}	${Sound}
 `
 }
 
 function code_4(PL_1, PL_2, PL_3, PL_4, EN, Sound, Pho) {
-    return `{{c1::${EN}}}<br><br>{{c2::${PL_1}}}&sbquo; {{c2::${PL_2}}}&sbquo; {{c2::${PL_3}}}&sbquo; {{c2::${PL_4}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}	${EN}	${Pho}	${Sound}
-    sound: ${Sound}<br><br>{{c1::${PL_1}}}&sbquo; {{c1::${PL_2}}}&sbquo; {{c1::${PL_3}}}&sbquo; {{c1::${PL_4}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}	${EN}	${Pho}	${Sound}
+    return `${EN}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}	${EN}	${Pho}	${Sound}
+    sound: ${Sound}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}	${EN}	${Pho}	${Sound}
+`
+}
+function code_4_pl(PL_1, PL_2, PL_3, PL_4, EN, Sound, Pho) {
+    return `${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}	${EN}	${Pho}	${Sound}
 `
 }
 
 function code_5(PL_1, PL_2, PL_3, PL_4, PL_5, EN, Sound, Pho) {
-    return `{{c1::${EN}}}<br><br>{{c2::${PL_1}}}&sbquo; {{c2::${PL_2}}}&sbquo; {{c2::${PL_3}}}&sbquo; {{c2::${PL_4}}}&sbquo; {{c2::${PL_5}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}&sbquo; ${PL_5}	${EN}	${Pho}	${Sound}
-    sound: ${Sound}<br><br>{{c1::${PL_1}}}&sbquo; {{c1::${PL_2}}}&sbquo; {{c1::${PL_3}}}&sbquo; {{c1::${PL_4}}}&sbquo; {{c1::${PL_5}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}&sbquo; ${PL_5}	${EN}	${Pho}	${Sound}
+    return `${EN}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}&sbquo; ${PL_5}	${EN}	${Pho}	${Sound}
+    sound: ${Sound}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}&sbquo; ${PL_5}	${EN}	${Pho}	${Sound}
+`
+}
+function code_5_pl(PL_1, PL_2, PL_3, PL_4, PL_5, EN, Sound, Pho) {
+    return `${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}&sbquo; ${PL_5}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}&sbquo; ${PL_5}	${EN}	${Pho}	${Sound}
 `
 }
 
 function code_6(PL_1, PL_2, PL_3, PL_4, PL_5, PL_6, EN, Sound, Pho) {
-    return `{{c1::${EN}}}<br><br>{{c2::${PL_1}}}&sbquo; {{c2::${PL_2}}}&sbquo; {{c2::${PL_3}}}&sbquo; {{c2::${PL_4}}}&sbquo; {{c2::${PL_5}}}&sbquo; {{c2::${PL_6}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}&sbquo; ${PL_5}&sbquo; ${PL_6}	${EN}	${Pho}	${Sound}
-    sound: ${Sound}<br><br>{{c1::${PL_1}}}&sbquo; {{c1::${PL_2}}}&sbquo; {{c1::${PL_3}}}&sbquo; {{c1::${PL_4}}}&sbquo; {{c1::${PL_5}}}&sbquo; {{c1::${PL_6}}}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}&sbquo; ${PL_5}&sbquo; ${PL_6}	${EN}	${Pho}	${Sound}
+    return `${EN}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}&sbquo; ${PL_5}&sbquo; ${PL_6}	${EN}	${Pho}	${Sound}
+    sound: ${Sound}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}&sbquo; ${PL_5}&sbquo; ${PL_6}	${EN}	${Pho}	${Sound}
+`
+}
+function code_6_pl(PL_1, PL_2, PL_3, PL_4, PL_5, PL_6, EN, Sound, Pho) {
+    return `${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}&sbquo; ${PL_5}&sbquo; ${PL_6}	${PL_1}&sbquo; ${PL_2}&sbquo; ${PL_3}&sbquo; ${PL_4}&sbquo; ${PL_5}&sbquo; ${PL_6}	${EN}	${Pho}	${Sound}
 `
 }
 
